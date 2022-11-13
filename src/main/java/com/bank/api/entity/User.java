@@ -5,6 +5,8 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -12,17 +14,24 @@ import java.util.UUID;
 @Entity
 @Table(name = "user")
 public class User {
+
     @Id
     @Column(name = "id", updatable = false, nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userId;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "second_name")
     private String lastName;
+
     @Column(name = "email")
     private String email;
+
     @Column(name = "phone")
     private String phone;
+
     @OneToMany(mappedBy = "user")
     private List<Account> accounts = new ArrayList<>();
 
